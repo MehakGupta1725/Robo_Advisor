@@ -20,7 +20,7 @@ warnings.filterwarnings('ignore')
 # ============================================================================
 
 st.set_page_config(
-    page_title="FinFlow - Robo Advisory Platform",
+    page_title="FinFlow India - Robo Advisory Platform",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -616,8 +616,8 @@ def show_login_page():
         st.markdown("""
             <div class='login-header'>
                 <div class='login-logo'>📊</div>
-                <h1 class='login-title'>FinFlow</h1>
-                <p class='login-subtitle'>Professional Robo Advisory</p>
+                <h1 class='login-title'>FinFlow India</h1>
+                <p class='login-subtitle'>Smart Investment Advisory</p>
                 <div class='login-separator'></div>
             </div>
         """, unsafe_allow_html=True)
@@ -815,8 +815,8 @@ def show_signup_page():
         st.markdown("""
             <div class='signup-header'>
                 <div class='signup-logo'>✨</div>
-                <h1 class='signup-title'>Join FinFlow</h1>
-                <p class='signup-subtitle'>Create your account</p>
+                <h1 class='signup-title'>Join FinFlow India</h1>
+                <p class='signup-subtitle'>Start your wealth journey</p>
                 <div class='signup-separator'></div>
             </div>
         """, unsafe_allow_html=True)
@@ -909,46 +909,46 @@ if not st.session_state.authenticated:
 # ============================================================================
 
 ASSET_DATABASE = {
-    'US Large Cap': 'SPY',
-    'US Tech': 'QQQ',
-    'US Small Cap': 'IWM',
-    'Bonds': 'AGG',
-    'Treasury': 'TLT',
-    'Emerging Markets': 'EEM',
-    'Gold': 'GLD',
-    'Commodities': 'DBC',
+    'NIFTY 50': '^NSEI',
+    'NIFTY IT': '^CNXIT',
+    'NIFTY MIDCAP 50': '^NSMID50',
+    'Government Bonds': 'GILT.NS',
+    'Gold ETF': '^NSEINDEXG',
+    'Bank NIFTY': '^NSEBANK',
+    'PSU Stocks': '^CNXINFRA',
+    'NIFTY 100': '^NSEI',
 }
 
 PORTFOLIO_STRATEGIES = {
     'Conservative': {
         'description': 'Low risk, stable returns. Suitable for retirees and risk-averse investors.',
-        'allocation': {'AGG': 0.70, 'SPY': 0.25, 'GLD': 0.05},
-        'expected_return': 0.045,
-        'volatility': 0.06
+        'allocation': {'GILT.NS': 0.70, '^NSEI': 0.25, '^NSEINDEXG': 0.05},
+        'expected_return': 0.065,
+        'volatility': 0.08
     },
     'Moderate': {
         'description': 'Balanced approach. Suitable for long-term investors with moderate risk tolerance.',
-        'allocation': {'SPY': 0.50, 'AGG': 0.40, 'EEM': 0.05, 'GLD': 0.05},
-        'expected_return': 0.075,
-        'volatility': 0.10
+        'allocation': {'^NSEI': 0.50, 'GILT.NS': 0.40, '^NSMID50': 0.05, '^NSEINDEXG': 0.05},
+        'expected_return': 0.095,
+        'volatility': 0.12
     },
     'Aggressive': {
         'description': 'Growth-focused. Suitable for investors with high risk tolerance and longer time horizons.',
-        'allocation': {'SPY': 0.40, 'QQQ': 0.30, 'EEM': 0.20, 'GLD': 0.10},
-        'expected_return': 0.105,
-        'volatility': 0.15
+        'allocation': {'^NSEI': 0.35, '^CNXIT': 0.30, '^NSMID50': 0.20, '^NSEBANK': 0.15},
+        'expected_return': 0.140,
+        'volatility': 0.18
     },
     'Growth': {
-        'description': 'Emphasizes capital appreciation through equities and emerging markets.',
-        'allocation': {'QQQ': 0.35, 'SPY': 0.35, 'EEM': 0.25, 'GLD': 0.05},
-        'expected_return': 0.100,
-        'volatility': 0.14
+        'description': 'Emphasizes capital appreciation through Indian equities.',
+        'allocation': {'^CNXIT': 0.35, '^NSEI': 0.35, '^NSMID50': 0.20, '^NSEINDEXG': 0.10},
+        'expected_return': 0.125,
+        'volatility': 0.16
     },
     'Income': {
         'description': 'Focus on stable income through bonds and dividend stocks.',
-        'allocation': {'AGG': 0.50, 'SPY': 0.30, 'TLT': 0.15, 'GLD': 0.05},
-        'expected_return': 0.055,
-        'volatility': 0.07
+        'allocation': {'GILT.NS': 0.50, '^NSEBANK': 0.30, '^NSEI': 0.15, '^NSEINDEXG': 0.05},
+        'expected_return': 0.080,
+        'volatility': 0.09
     }
 }
 
@@ -1034,11 +1034,11 @@ with st.sidebar:
     st.markdown("### 💰 Investment Parameters")
     
     investment_amount = st.number_input(
-        "Initial Investment ($)",
-        min_value=1000.0,
-        max_value=10000000.0,
-        value=100000.0,
-        step=10000.0,
+        "Initial Investment (₹)",
+        min_value=50000.0,
+        max_value=50000000.0,
+        value=500000.0,
+        step=50000.0,
     )
     
     investment_horizon = st.number_input(
@@ -1049,11 +1049,11 @@ with st.sidebar:
     )
     
     monthly_contribution = st.number_input(
-        "Monthly Contribution ($)",
+        "Monthly Contribution (₹)",
         min_value=0.0,
-        max_value=100000.0,
-        value=1000.0,
-        step=100.0,
+        max_value=500000.0,
+        value=10000.0,
+        step=1000.0,
     )
 
 # ============================================================================
@@ -1061,7 +1061,7 @@ with st.sidebar:
 # ============================================================================
 
 create_dashboard_header(
-    "🎯 FinFlow - Robo Advisory Dashboard",
+    "🎯 FinFlow India - Robo Advisory Dashboard",
     f"Personalized portfolio management for {st.session_state.user_name} | {st.session_state.risk_profile} Strategy"
 )
 
@@ -1079,7 +1079,7 @@ with col2:
     create_metric_card("Annual Volatility", f"{strategy_data['volatility']*100:.1f}%", color="secondary")
 
 with col3:
-    create_metric_card("Investment Amount", f"${investment_amount:,.0f}", color="success")
+    create_metric_card("Investment Amount", f"₹{investment_amount:,.0f}", color="success")
 
 with col4:
     create_metric_card("Portfolio Assets", str(len(strategy_data['allocation'])), color="warning")

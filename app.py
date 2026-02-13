@@ -20,7 +20,7 @@ warnings.filterwarnings('ignore')
 # ============================================================================
 
 st.set_page_config(
-    page_title="FinFlow India - Robo Advisory Platform",
+    page_title="Riskovian - Smart Portfolio Advisory",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -616,7 +616,7 @@ def show_login_page():
         st.markdown("""
             <div class='login-header'>
                 <div class='login-logo'>📊</div>
-                <h1 class='login-title'>FinFlow India</h1>
+                <h1 class='login-title'>Riskovian</h1>
                 <p class='login-subtitle'>Smart Investment Advisory</p>
                 <div class='login-separator'></div>
             </div>
@@ -815,7 +815,7 @@ def show_signup_page():
         st.markdown("""
             <div class='signup-header'>
                 <div class='signup-logo'>✨</div>
-                <h1 class='signup-title'>Join FinFlow India</h1>
+                <h1 class='signup-title'>Join Riskovian</h1>
                 <p class='signup-subtitle'>Start your wealth journey</p>
                 <div class='signup-separator'></div>
             </div>
@@ -1061,7 +1061,7 @@ with st.sidebar:
 # ============================================================================
 
 create_dashboard_header(
-    "🎯 FinFlow India - Robo Advisory Dashboard",
+    "🎯 Riskovian - Wealth Advisory Dashboard",
     f"Personalized portfolio management for {st.session_state.user_name} | {st.session_state.risk_profile} Strategy"
 )
 
@@ -1496,5 +1496,5 @@ This application is provided for **educational and informational purposes only**
 - **Data Source**: Historical data sourced from Yahoo Finance. Market data may have delays or inaccuracies.
 
 ---
-© 2026 **FinFlow** - Professional Robo Advisory Platform | All Rights Reserved
+© 2026 **Riskovian** - Smart Portfolio Advisory Platform | All Rights Reserved
 """)
